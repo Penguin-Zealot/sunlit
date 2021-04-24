@@ -9,7 +9,7 @@ import { io } from "socket.io-client";
 import { Container, Grid, Divider, Header, Button } from "semantic-ui-react";
 
 // use hooks
-const socket = io("http://localhost:3000/");
+const socket = io("https://sun-lit.herokuapp.com/");
 
 export default function Home() {
   const [openTime, handleOpenChange] = useState(new Date());
