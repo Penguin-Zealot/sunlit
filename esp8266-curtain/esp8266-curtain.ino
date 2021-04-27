@@ -33,11 +33,12 @@ void setup()
     delay(100);
   }
 
-  //socket.on("toggle", event);
+  socket.on("toggle", event);
   
-  socket.begin("192.168.0.2", 3000);
+  //socket.begin("sun-lit.herokuapp.com");
+  socket.begin("192.168.0.2",3000);
 
-  delay(10000);
+  delay(5000);
 
   socket.on("message", event);
 

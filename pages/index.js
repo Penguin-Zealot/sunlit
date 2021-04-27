@@ -2,14 +2,18 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
 import { KeyboardTimePicker } from "@material-ui/pickers";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { io } from "socket.io-client";
 
 import { Container, Grid, Divider, Header, Button } from "semantic-ui-react";
 
 // use hooks
-const socket = io("https://sun-lit.herokuapp.com/");
+const url =
+  process.env.NODE_ENV === "production"
+    ? "https://sun-lit.herokuapp.com/"
+    : `http://localhost:${process.env.PORT}/`;
+//const socket = io(url);
 
 export default function Home() {
   const [openTime, handleOpenChange] = useState(new Date());
@@ -18,11 +22,16 @@ export default function Home() {
   const [disabled, handleDisable] = useState(false);
   var status = "Unknown";
 
+  const socket = useRef();
+
   useEffect(() => {
-    //const socket = io("http://localhost:3000/");
-    //socket.emit("toggle", "hi");
+    socket.current = io();
+
+    socket.current.emit("hello", "hi");
+
+    socket.current.on("message", (data) => console.log(data));
     // CLEAN UP THE EFFECT
-    //return () => socket.disconnect();
+    return () => socket.current.disconnect();
   }, []);
 
   return (
@@ -41,7 +50,7 @@ export default function Home() {
           disabled={disabled}
           onClick={() => {
             handleDisable(true);
-            socket.emit("toggle", "hi");
+            socket.current.emit("toggle", "hi");
             setTimeout(() => handleDisable(false), 1000);
           }}
         >

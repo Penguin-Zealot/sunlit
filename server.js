@@ -26,8 +26,8 @@ nextApp.prepare().then(async () => {
     // add socket events
     socket.on("toggle", (data) => {
       console.log(data);
-      io.emit("message", "hello");
-      socket.emit("message", "hello");
+      io.emit("message", `any message: ${data}`);
+      socket.emit("message", `your message: ${data}`);
     });
 
     socket.on("disconnect", () => {
