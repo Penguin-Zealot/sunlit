@@ -7,6 +7,8 @@
 
 #include "password.h"
 
+#define MAC "d8:bf:c0:f9:d2:61"
+
 ESP8266WiFiMulti WiFiMulti;
 SocketIoClient socket;
 
@@ -34,9 +36,9 @@ void setup()
   }
 
   socket.on("toggle", event);
-  
+
   //socket.begin("sun-lit.herokuapp.com");
-  socket.begin("192.168.0.2",3000);
+  socket.begin("192.168.0.2", 3000);
 
   delay(5000);
 

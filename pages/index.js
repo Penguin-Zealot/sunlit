@@ -25,6 +25,7 @@ export default function Home() {
   const socket = useRef();
 
   useEffect(() => {
+    // connects to the same url server is being hosted on
     socket.current = io();
 
     socket.current.emit("hello", "hi");
