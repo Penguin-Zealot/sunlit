@@ -26,9 +26,18 @@ nextApp.prepare().then(async () => {
     // add socket events
     socket.on("toggle", (data) => {
       console.log(data);
-      //io.emit("message", `any message: ${data}`);
-      io.emit("pi_open", "attempt open");
+
+      io.emit("pi_toggle", "attempt open");
       socket.emit("message", `your message: ${data}`);
+    });
+
+    //consider merging
+    socket.on("pi_success", (data) => {
+      console.log(data);
+    });
+
+    socket.on("pi_failure", (data) => {
+      console.log(data);
     });
 
     socket.on("disconnect", () => {
