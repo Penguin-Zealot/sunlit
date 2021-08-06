@@ -55,7 +55,7 @@ export default function Home() {
             setTimeout(() => handleDisable(false), 1000);
           }}
         >
-          Open
+          Toggle
         </Button>
       </Container>
 
