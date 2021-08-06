@@ -65,7 +65,10 @@ export default function Home() {
           placeholder="08:00 AM"
           mask="__:__ _M"
           value={openTime}
-          onChange={(date) => handleOpenChange(date)}
+          onChange={(date) => {
+            handleOpenChange(date);
+            socket.current.emit("set_open_time", date);
+          }}
         />
 
         <KeyboardTimePicker
@@ -73,7 +76,10 @@ export default function Home() {
           placeholder="08:00 PM"
           mask="__:__ _M"
           value={closeTime}
-          onChange={(date) => handleCloseChange(date)}
+          onChange={(date) => {
+            handleCloseChange(date);
+            socket.current.emit("set_close_time", date);
+          }}
         />
       </Container>
     </>

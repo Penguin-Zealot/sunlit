@@ -31,6 +31,16 @@ nextApp.prepare().then(async () => {
       socket.emit("message", `your message: ${data}`);
     });
 
+    socket.on("set_open_time", (data) => {
+      console.log(data);
+      socket.emit("pi_set_open", data);
+    });
+
+    socket.on("set_close_time", (data) => {
+      console.log(data);
+      socket.emit("pi_set_close", data);
+    });
+
     //consider merging
     socket.on("pi_success", (data) => {
       console.log(data);

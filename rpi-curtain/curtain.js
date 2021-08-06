@@ -56,6 +56,7 @@ socket.on("pi_set_open", (data) => {
 
 //set close time
 socket.on("pi_set_open", (data) => {
+  console.log(data);
   let time = new Date(data);
   resetCloseInterval(time);
 });
