@@ -27,7 +27,7 @@ nextApp.prepare().then(async () => {
     socket.on("toggle", (data) => {
       console.log(data);
 
-      io.emit("pi_toggle", "attempt open");
+      io.emit("pi_toggle", "attempt toggle");
       socket.emit("message", `your message: ${data}`);
     });
 
